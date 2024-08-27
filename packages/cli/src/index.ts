@@ -108,9 +108,8 @@ function applyCommandsConfig(command: Command, config: any) {
   if (config.anvilOptions) {
     config.anvilOptions.map((option: any) => {
       let newOption = command.createOption(option.flags, option.description).default(option.defaultValue);
-      if (newOption.negate) {
-        newOption.negate = false;
-      }
+      newOption.negate = false;
+      
       option.required
         ? command.addOption(newOption.makeOptionMandatory())
         : command.addOption(newOption);
@@ -119,9 +118,8 @@ function applyCommandsConfig(command: Command, config: any) {
   if (config.options) {
     config.options.map((option: any) => {
       let newOption = command.createOption(option.flags, option.description).default(option.defaultValue);
-      if (newOption.negate) {
-        newOption.negate = false;
-      }
+      newOption.negate = false;
+      
       option.required
         ? command.addOption(newOption.makeOptionMandatory())
         : command.addOption(newOption);
