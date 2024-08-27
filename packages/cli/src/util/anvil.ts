@@ -77,6 +77,10 @@ export type AnvilOptions = {
    */
   timeout?: number | undefined;
   /**
+   * Disable the RPC request size limit.
+   */
+  noRequestSizeLimit?: boolean | undefined;
+  /**
    * The chain id.
    */
   chainId?: number | undefined;
@@ -208,6 +212,7 @@ const anvilOptionKeys = [
   'noStorageCaching',
   'retries',
   'timeout',
+  'noRequestSizeLimit',
   'chainId',
   'codeSizeLimit',
   'disableBlockGasLimit',

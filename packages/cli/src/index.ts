@@ -107,16 +107,24 @@ function applyCommandsConfig(command: Command, config: any) {
   }
   if (config.anvilOptions) {
     config.anvilOptions.map((option: any) => {
+      let newOption = command.createOption(option.flags, option.description).default(option.defaultValue);
+      if (newOption.negate) {
+        newOption.negate = false;
+      }
       option.required
-        ? command.requiredOption(option.flags, option.description, option.defaultValue)
-        : command.option(option.flags, option.description, option.defaultValue);
+        ? command.addOption(newOption.makeOptionMandatory())
+        : command.addOption(newOption);
     });
   }
   if (config.options) {
     config.options.map((option: any) => {
+      let newOption = command.createOption(option.flags, option.description).default(option.defaultValue);
+      if (newOption.negate) {
+        newOption.negate = false;
+      }
       option.required
-        ? command.requiredOption(option.flags, option.description, option.defaultValue)
-        : command.option(option.flags, option.description, option.defaultValue);
+        ? command.addOption(newOption.makeOptionMandatory())
+        : command.addOption(newOption);
     });
   }
   return command;
@@ -146,7 +154,6 @@ function configureRun(program: Command) {
     program
   ) {
     log(bold('Starting local node...\n'));
-
     const { run } = await import('./commands/run');
 
     options.port = Number.parseInt(options.port);

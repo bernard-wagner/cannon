@@ -55,6 +55,10 @@ const anvilOptions = [
     description: 'Timeout in ms for requests sent to remote JSON-RPC server in forking mode.',
   },
   {
+    flags: '--no-request-size-limit',
+    description: 'Disable the default request body size limit. At time of writing the default limit is 2MB.',
+  },
+  {
     flags: '--code-size-limit [number]',
     description: 'EIP-170: Contract code size limit in bytes. Useful to increase this because of tests.',
   },
